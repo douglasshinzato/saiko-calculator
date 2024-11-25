@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleCalculate() {
     const price = parseFloat(basePriceInput.value)
     const items = parseFloat(itemsQuantity.value)
-    if (isNaN(price && items)) return
+    if (isNaN(price)) return //if (isNaN(price && items)) return
 
     const firstPrice = (price * 1.25).toFixed(2)
     const secondPrice = (firstPrice * 0.85).toFixed(2)
@@ -36,18 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayResults(results) {
     resultsDiv.innerHTML = ''
     results.forEach((result, index) => {
-      const resultItem = document.createElement('div')
-      resultItem.classList.add('result-item')
       if (index === 0) {
+        const resultItem = document.createElement('div')
+        resultItem.classList.add('result-item')
         resultItem.textContent = `R$ ${result} Crédito em 6x`
+        resultsDiv.appendChild(resultItem)
       } else if (index === 1) {
+        const resultItem = document.createElement('div')
+        resultItem.classList.add('result-item')
         resultItem.textContent = `R$ ${result} Crédito à vista`
+        resultsDiv.appendChild(resultItem)
       } else if (index === 2) {
+        const resultItem = document.createElement('div')
+        resultItem.classList.add('result-item')
         resultItem.textContent = `R$ ${result} Débito`
-      } else if (index === 3) {
+        resultsDiv.appendChild(resultItem)
+      } else if (index === 3 && !isNaN(result)) {
+        const resultItem = document.createElement('div')
+        resultItem.classList.add('result-item')
         resultItem.textContent = `${result} Etiquetas`
+        resultsDiv.appendChild(resultItem)
       }
-      resultsDiv.appendChild(resultItem)
     })
   }
 })
