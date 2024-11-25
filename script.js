@@ -4,9 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const basePriceInput = document.getElementById('base-price')
   const itemsQuantity = document.getElementById('items-quantity')
   const calculateBtn = document.getElementById('calculate-button')
+  const clearBtn = document.getElementById('clear-button')
   const resultsDiv = document.getElementById('results')
 
   calculateBtn.addEventListener('click', handleCalculate)
+  clearBtn.addEventListener('click', handleClear)
+
   basePriceInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       handleCalculate()
@@ -17,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
       handleCalculate()
     }
   })
-
   function handleCalculate() {
     const price = parseFloat(basePriceInput.value)
     const items = parseFloat(itemsQuantity.value)
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const results = [firstPrice, secondPrice, thirdPrice, tagsNumber]
 
     displayResults(results)
+    clearBtn.style.display = 'block'
   }
 
   function displayResults(results) {
@@ -58,5 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
         resultsDiv.appendChild(resultItem)
       }
     })
+  }
+
+  function handleClear() {
+    basePriceInput.value = ''
+    itemsQuantity.value = ''
+    resultsDiv.innerHTML = ''
+    clearBtn.style.display = 'none'
   }
 })

@@ -78,6 +78,7 @@ input {
   background-color: white;
   color: #1c191d;
   border: 0.1rem solid #1c191d;
+  text-align: center;
 }
 
 input:focus {
@@ -102,8 +103,13 @@ button:hover {
   background-color: #27272a;
 }
 
+#clear-button {
+  display: none;
+  width: 100%;
+}
+
 .results {
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .result-item {
