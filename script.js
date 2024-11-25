@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const calculateBtn = document.getElementById('calculate-button')
   const clearBtn = document.getElementById('clear-button')
   const resultsDiv = document.getElementById('results')
+  const inputGroup = document.querySelector('.input-group')
+  const resultsText = document.querySelector('.results-text')
 
   calculateBtn.addEventListener('click', handleCalculate)
   clearBtn.addEventListener('click', handleClear)
@@ -33,7 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const results = [firstPrice, secondPrice, thirdPrice, tagsNumber]
 
     displayResults(results)
+    inputGroup.style.display = 'none'
+    resultsText.style.display = 'block'
     clearBtn.style.display = 'block'
+    console.log(resultsText)
   }
 
   function displayResults(results) {
@@ -67,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     basePriceInput.value = ''
     itemsQuantity.value = ''
     resultsDiv.innerHTML = ''
+    resultsText.style.display = 'none'
     clearBtn.style.display = 'none'
+    inputGroup.style.display = 'flex'
+    resultsText.style.display = 'none'
   }
 })
