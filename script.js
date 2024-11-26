@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleClear() {
-    productName.value = ''
     basePriceInput.value = ''
     itemsQuantity.value = ''
     resultsDiv.innerHTML = ''
