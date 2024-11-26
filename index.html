@@ -13,11 +13,14 @@
 <body>
   <div class="container">
     <img class="logo" src="assets/saiko-logo.svg" alt="Logotipo Saiko" width="300px">
+    <div class="header">
+      <i data-lucide="calculator" class="calculator-icon"></i>
+      <h1>Calculadora de preços e etiquetas</h1>
+    </div>
     <div class="calculator">
-      <div class="header">
-        <i data-lucide="calculator" class="calculator-icon"></i>
-        <h1>Calculadora de preços e etiquetas</h1>
-      </div>
+      <h2>Nome do produto</h2>
+      <input type="text" class="product-name" placeholder="Insira o nome do produto">
+      <button id="clear-text-button">Limpar</button>
       <div class="input-group">
         <h2>Valor no débito</h2>
         <input type="number" inputmode="decimal" id="base-price" placeholder="Insira o valor no débito">
@@ -27,7 +30,7 @@
       </div>
       <h2 class="results-text">Resultados</h2>
       <div id="results" class="results"></div>
-      <button id="clear-button">Novo cálculo</button>
+      <button id="reset-button">Novo cálculo</button>
     </div>
   </div>
   <script src="script.js"></script>

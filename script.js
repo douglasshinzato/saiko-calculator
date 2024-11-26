@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons()
 
+  const productName = document.querySelector('.product-name')
   const basePriceInput = document.getElementById('base-price')
   const itemsQuantity = document.getElementById('items-quantity')
+  const clearTextBtn = document.getElementById('clear-text-button')
   const calculateBtn = document.getElementById('calculate-button')
-  const clearBtn = document.getElementById('clear-button')
+  const resetBtn = document.getElementById('reset-button')
   const resultsDiv = document.getElementById('results')
   const inputGroup = document.querySelector('.input-group')
   const resultsText = document.querySelector('.results-text')
 
+  clearTextBtn.addEventListener('click', handleClearText)
   calculateBtn.addEventListener('click', handleCalculate)
-  clearBtn.addEventListener('click', handleClear)
+  resetBtn.addEventListener('click', handleClear)
 
   basePriceInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
@@ -22,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       handleCalculate()
     }
   })
+
+  function handleClearText() {
+    productName.value = ''
+  }
+
   function handleCalculate() {
     const price = parseFloat(basePriceInput.value)
     const items = parseFloat(itemsQuantity.value)
@@ -37,8 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayResults(results)
     inputGroup.style.display = 'none'
     resultsText.style.display = 'block'
-    clearBtn.style.display = 'block'
-    console.log(resultsText)
+    resetBtn.style.display = 'block'
   }
 
   function displayResults(results) {
@@ -69,11 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleClear() {
+    productName.value = ''
     basePriceInput.value = ''
     itemsQuantity.value = ''
     resultsDiv.innerHTML = ''
     resultsText.style.display = 'none'
-    clearBtn.style.display = 'none'
+    resetBtn.style.display = 'none'
     inputGroup.style.display = 'flex'
     resultsText.style.display = 'none'
   }
