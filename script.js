@@ -35,9 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = parseFloat(itemsQuantity.value)
     if (isNaN(price)) return //if (isNaN(price && items)) return
 
-    const firstPrice = (price * 1.25).toFixed(2)
-    const secondPrice = (firstPrice * 0.85).toFixed(2)
-    const thirdPrice = (price * 1).toFixed(2)
+    const firstPrice = (price * 1.25).toFixed(2).replace('.', ',')
+    const secondPrice = (firstPrice.replace(',', '.') * 0.85)
+      .toFixed(2)
+      .replace('.', ',')
+    const thirdPrice = (price * 1).toFixed(2).replace('.', ',')
     const tagsNumber = Math.ceil(items / 3)
 
     const results = [firstPrice, secondPrice, thirdPrice, tagsNumber]
