@@ -53,29 +53,59 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayResults(results) {
     resultsDiv.innerHTML = ''
     results.forEach((result, index) => {
+      const resultItem = document.createElement('div')
+      resultItem.classList.add('result-item')
+
+      let label = ''
+      let isCopyable = true
       if (index === 0) {
-        const resultItem = document.createElement('div')
-        resultItem.classList.add('result-item')
-        resultItem.textContent = `R$ ${result} Crédito em 6x`
-        resultsDiv.appendChild(resultItem)
+        label = `R$ ${result} Crédito em 6x`
       } else if (index === 1) {
-        const resultItem = document.createElement('div')
-        resultItem.classList.add('result-item')
-        resultItem.textContent = `R$ ${result} Crédito à vista`
-        resultsDiv.appendChild(resultItem)
+        label = `R$ ${result} Crédito à vista`
       } else if (index === 2) {
-        const resultItem = document.createElement('div')
-        resultItem.classList.add('result-item')
-        resultItem.textContent = `R$ ${result} Débito`
-        resultsDiv.appendChild(resultItem)
+        label = `R$ ${result} Débito`
       } else if (index === 3 && !isNaN(result)) {
-        const resultItem = document.createElement('div')
-        resultItem.classList.add('result-item')
-        resultItem.textContent = `${result} Etiquetas`
-        resultsDiv.appendChild(resultItem)
+        label = `${result} Etiquetas`
+        isCopyable = false // aqui desabilita o clique
+      } else {
+        return
       }
+
+      resultItem.textContent = label
+
+      // Evento de clique
+      if (isCopyable) {
+        resultItem.addEventListener('click', () => {
+          navigator.clipboard.writeText(result.toString())
+            .then(() => {
+              showCopiedMessage(resultItem)
+            })
+            .catch(err => {
+              console.error('Erro ao copiar: ', err)
+            })
+        })
+      } else {
+        resultItem.classList.add('not-copyable') // pra estilizar diferente, se quiser
+      }
+
+      resultsDiv.appendChild(resultItem)
     })
   }
+
+  function showCopiedMessage(targetElement) {
+    const copiedMsg = document.createElement('span')
+    copiedMsg.textContent = 'Copiado!'
+    copiedMsg.classList.add('copied-msg')
+
+    targetElement.appendChild(copiedMsg)
+
+    // Remove a mensagem depois de 1.5 segundos
+    setTimeout(() => {
+      copiedMsg.remove()
+    }, 1500)
+  }
+
+
 
   function handleClear() {
     basePriceInput.value = ''
