@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (index === 2) {
         label = `R$ ${result} Débito`
       } else if (index === 3 && !isNaN(result)) {
-        label = `${result} Etiquetas`
+        label = `${result} Etiqueta(s)`
         isCopyable = false // aqui desabilita o clique
       } else {
         return

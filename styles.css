@@ -165,6 +165,17 @@ button:hover {
   background-color: #e0e0e0;
 }
 
+.not-copyable {
+  cursor: default;
+  background-color: #ddd;
+  color: #555;
+  /* font-style: italic; */
+}
+
+.not-copyable:hover {
+  background-color: #ddd;
+}
+
 .copied-msg {
   position: absolute;
   right: 10px;
@@ -178,15 +189,7 @@ button:hover {
   animation: fadeOut 1.5s forwards;
 }
 
-.not-copyable {
-  cursor: default;
-  background-color: #eaeaea;
-}
 
-.not-copyable:hover {
-  background-color: #eaeaea;
-  /* evita mudança de cor no hover */
-}
 
 @keyframes fadeOut {
   0% {
